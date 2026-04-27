@@ -5,6 +5,7 @@
 @variant dark (&:where(.dark, .dark *));
 
 @source "./";
+@source "../index.html";
 
 @theme {
   --animate-wavey: wavey 1000ms linear infinite;
