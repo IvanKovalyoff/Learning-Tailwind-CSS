@@ -4,6 +4,9 @@ A responsive, single-page marketing site for a fictional music festival, built a
 
 Built following the [Tailwind CSS From Scratch | Learn Tailwind CSS Masterclass](https://www.udemy.com/share/107rCO3@VZszsso_9Mxgv6L13ZUaGfG9JX2lFJxZKQA5FrKlUDfz_XYoeH02cFBm0hW8TWKV7g==/) course on Udemy, with additional improvements applied independently (semantic HTML restructuring, ARIA accessibility, custom scrollbar theming, dark mode persistence).
 
+## Project visualization
+Visit site: https://ivankovalyoff.github.io/Learning-Tailwind-CSS/
+
 ## Features
 
 - **Dark / light mode** — toggle with persistent `localStorage` preference
@@ -92,8 +95,8 @@ tailwind/
 
 ## Contact
 
-- LinkedIn: [your-linkedin-url](https://linkedin.com/in/your-username)
-- GitHub: [your-github-url](https://github.com/your-username)
+- LinkedIn: https://linkedin.com/in/ivan-kovalov-197759348
+- GitHub: https://github.com/IvanKovalyoff
 
 ## Skills Demonstrated
 
