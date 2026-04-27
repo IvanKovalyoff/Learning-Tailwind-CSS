@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>tw:mf — Music Festival</title>
+  <link href="./output.css" rel="stylesheet">
+  <script defer src="assets/fontawesome/js/solid.min.js"></script>
+  <script defer src="assets/fontawesome/js/fontawesome.min.js"></script>
+  <script>
+    window.onload = () => {
+      const toggle = document.getElementById('dark-mode-toggle');
+      toggle.addEventListener('click', () => {
+        document.documentElement.classList.toggle('dark');
+        localStorage.setItem('dark', document.documentElement.classList.contains('dark'));
+      });
+      if (localStorage.getItem('dark') === 'true') document.documentElement.classList.add('dark');
+
+      const carousel = document.getElementById('carousel');
+
+      document.getElementById('next').addEventListener('click', () => {
+        const slideWidth = carousel.firstElementChild.offsetWidth;
+        carousel.scrollBy({ left: slideWidth, behavior: 'smooth' });
+      });
+
+      document.getElementById('previous').addEventListener('click', () => {
+        const slideWidth = carousel.firstElementChild.offsetWidth + 16;
+        carousel.scrollBy({ left: -slideWidth, behavior: 'smooth' });
+      });
+    }
+  </script>
+</head>
+<body class="bg-zinc-200 dark:bg-zinc-900">
+  <header>
+    <button
+      id="dark-mode-toggle"
+      aria-label="Toggle dark mode"
+      class="z-10 fixed top-35 right-0 inline-block w-12 cursor-pointer rounded-l-lg bg-zinc-900 dark:bg-zinc-200 text-zinc-200 dark:text-zinc-900 p-2 text-3xl"
+    >
+      <span class="dark:hidden" aria-hidden="true">
+        <i class="fa-solid fa-sun"></i>
+      </span>
+      <span class="hidden dark:inline" aria-hidden="true">
+        <i class="fa-solid fa-moon"></i>
+      </span>
+    </button>
+    <nav class="sticky z-10 top-0 flex bg-linear-to-r from-rose-500 to-pink-500">
+      <a href="/" class="flex items-center gap-2 p-2 text-zinc-200">
+        <img src="src/assets/images/logo-inverted.png" width="50" alt="tw:mf logo">
+        <span class="text-2xl font-bold">
+          tw:<span class="text-sky-900">mf</span>
+        </span>
+      </a>
+
+      <!-- Mobile menu -->
+      <details class="group my-auto ml-auto pr-4 cursor-pointer block md:hidden">
+        <summary class="list-none" aria-label="Toggle navigation menu">
+          <div class="top-0 h-1 w-8 rounded-full bg-zinc-200 transition-all group-open:top-2 group-open:rotate-45 relative"></div>
+          <div class="h-1 w-8 rounded-full bg-zinc-200 mt-1 opacity-100 group-open:opacity-0 transition-all"></div>
+          <div class="top-0 h-1 w-8 rounded-full bg-zinc-200 mt-1 transition-all group-open:-top-2 group-open:-rotate-45 relative"></div>
+        </summary>
+        <ul class="absolute top-[62px] bg-linear-to-r from-rose-500 to-pink-500 w-full left-0 list-none">
+          <li>
+            <a href="#" class="relative flex h-full cursor-pointer items-center justify-center p-4 font-bold text-pink-200 transition-colors hover:bg-white/10 hover:text-zinc-200">Home</a>
+          </li>
+          <li>
+            <a href="#headliners" class="relative flex h-full cursor-pointer items-center justify-center p-4 font-bold text-pink-200 transition-colors hover:bg-white/10 hover:text-zinc-200">Lineup</a>
+          </li>
+          <li>
+            <details class="group relative h-full cursor-pointer text-pink-200 transition-colors hover:bg-white/10 hover:text-zinc-200">
+              <summary class="list-none p-4 font-bold text-center">Tickets</summary>
+              <ul class="list-none">
+                <li>
+                  <a href="#tickets" class="block p-4 text-center text-pink-200 hover:bg-white/5 hover:text-zinc-200 transition-colors ease-in-out">Single day ticket</a>
+                </li>
+                <li>
+                  <a href="#tickets" class="block p-4 text-center text-pink-200 hover:bg-white/5 hover:text-zinc-200 transition-colors ease-in-out">7 days ticket</a>
+                </li>
+              </ul>
+            </details>
+          </li>
+          <li>
+            <a href="#" class="relative flex h-full cursor-pointer items-center justify-center p-4 font-bold text-pink-200 transition-colors hover:bg-white/10 hover:text-zinc-200">Support</a>
+          </li>
+        </ul>
+      </details>
+
+      <!-- Desktop menu -->
+      <ul class="hidden flex-1 items-center justify-end md:flex list-none">
+        <li>
+          <a href="#" class="menu-item">Home</a>
+        </li>
+        <li>
+          <a href="#headliners" class="menu-item">Lineup</a>
+        </li>
+        <li class="menu-item group">
+          <span>Tickets</span>
+          <ul class="hidden absolute top-full right-0 bg-pink-500 whitespace-nowrap rounded-b-md text-right group-hover:block list-none">
+            <li>
+              <a href="#tickets" class="block p-4 font-bold text-pink-200 hover:bg-white/5 hover:text-zinc-200 transition-colors ease-in-out">Single day ticket</a>
+            </li>
+            <li>
+              <a href="#tickets" class="block p-4 font-bold text-pink-200 hover:bg-white/5 hover:text-zinc-200 transition-colors ease-in-out">7 days ticket</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#" class="menu-item">Support</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section
+      aria-label="Hero"
+      style="background-image: url(src/assets/images/hero.jpg);"
+      class="bg-cover bg-center bg-fixed flex flex-col items-center justify-center h-[calc(100vh-200px)] min-h-[400px]"
+    >
+      <div class="bg-white/30 py-2 px-4 rounded-xl text-center backdrop-blur-md">
+        <div class="relative">
+          <img src="src/assets/images/logo.png" alt="tw:mf Music Festival" width="175">
+          <div class="flex items-center justify-center mt-[-70px] mb-5" aria-hidden="true">
+            <div class="bg-pink-500 w-14 h-14 rounded-full flex items-center justify-center gap-1">
+              <div class="h-2 w-1 bg-pink-300 rounded-full animate-wavey animation-delay-300"></div>
+              <div class="w-1 h-3 bg-pink-200 rounded-full animate-wavey animation-delay-200"></div>
+              <div class="w-1 h-4 bg-pink-100 rounded-full animate-wavey animation-delay-150"></div>
+              <div class="w-1 h-3 bg-pink-200 rounded-full animate-wavey animation-delay-300"></div>
+              <div class="h-2 w-1 bg-pink-300 rounded-full animate-wavey animation-delay-75"></div>
+            </div>
+          </div>
+        </div>
+        <p class="text-5xl font-bold text-zinc-200">
+          tw:<span class="text-sky-900">mf</span>
+        </p>
+      </div>
+
+      <p class="font-bold mt-3 text-sm text-zinc-200">
+        Keep me updated with news and promotions
+      </p>
+
+      <form class="mt-3 flex gap-2" aria-label="Newsletter signup">
+        <label for="newsletter-email" class="sr-only">Email address</label>
+        <input
+          id="newsletter-email"
+          type="email"
+          name="email"
+          placeholder="Email"
+          class="rounded-sm border border-white/30 bg-white/30 backdrop-blur-md p-2 font-bold text-sky-900 placeholder-zinc-500 caret-pink-500 outline-pink-500 focus:outline"
+        >
+        <button
+          type="submit"
+          class="cursor-pointer rounded-sm bg-pink-500 py-2 px-4 font-bold transition-colors hover:bg-sky-900 hover:shadow-lg hover:shadow-black/20 text-zinc-200"
+        >
+          Subscribe
+        </button>
+      </form>
+    </section>
+
+    <!-- Headliners -->
+    <section id="headliners" class="container mx-auto mt-20 text-zinc-900 dark:text-zinc-200">
+      <h2>
+        <span class="text-transparent bg-linear-to-r from-cyan-500 to-pink-500 bg-clip-text">Headliners</span>
+      </h2>
+      <p>
+        Experience the sonic delight from these mode-up artists 7 days that music fans are calling
+        "one of the many gigs than will happen this year"
+      </p>
+      <div class="flex">
+        <button id="previous" aria-label="Previous" class="text-5xl flex justify-center items-center cursor-pointer p-2 relative -top-8">
+          <i class="fas fa-angle-left" aria-hidden="true"></i>
+        </button>
+
+        <ul id="carousel" role="list" class="styled-scrollbar scroll-smooth mt-4 flex-1 flex w-full gap-4 pb-5 snap-x overflow-x-auto list-none">
+          <li class="min-w-[80%] md:min-w-[40%]">
+            <div
+              role="img" aria-label="Corduroy Gary"
+              style="background-image: url('src/assets/images/band1.jpg');"
+              class="h-80 w-full snap-center rounded-xl bg-cover bg-center shadow-md shadow-black/20"
+            ></div>
+            <h5 class="mt-2">Corduroy Gary</h5>
+            <p>1st July 9pm — Main Stage</p>
+          </li>
+          <li class="min-w-[80%] md:min-w-[40%]">
+            <div
+              role="img" aria-label="Dave's showing off again"
+              style="background-image: url('src/assets/images/band2.jpg');"
+              class="h-80 w-full snap-center rounded-xl bg-cover bg-center shadow-md shadow-black/20"
+            ></div>
+            <h5 class="mt-2">Dave's showing off again</h5>
+            <p>2nd July 9pm — Main Stage</p>
+          </li>
+          <li class="min-w-[80%] md:min-w-[40%]">
+            <div
+              role="img" aria-label="Sarah can't have dairy"
+              style="background-image: url('src/assets/images/band3.jpg');"
+              class="h-80 w-full snap-center rounded-xl bg-cover bg-center shadow-md shadow-black/20"
+            ></div>
+            <h5 class="mt-2">Sarah can't have dairy</h5>
+            <p>3rd July 9pm — Main Stage</p>
+          </li>
+          <li class="min-w-[80%] md:min-w-[40%]">
+            <div
+              role="img" aria-label="Corduroy Gary"
+              style="background-image: url('src/assets/images/band4.jpg');"
+              class="h-80 w-full snap-center rounded-xl bg-cover bg-center shadow-md shadow-black/20"
+            ></div>
+            <h5 class="mt-2">Corduroy Gary</h5>
+            <p>1st July 9pm — Main Stage</p>
+          </li>
+          <li class="min-w-[80%] md:min-w-[40%]">
+            <div
+              role="img" aria-label="Corduroy Gary"
+              style="background-image: url('src/assets/images/band5.jpg');"
+              class="h-80 w-full snap-center rounded-xl bg-cover bg-center shadow-md shadow-black/20"
+            ></div>
+            <h5 class="mt-2">Corduroy Gary</h5>
+            <p>1st July 9pm — Main Stage</p>
+          </li>
+          <li class="min-w-[80%] md:min-w-[40%]">
+            <div
+              role="img" aria-label="Corduroy Gary"
+              style="background-image: url('src/assets/images/band6.jpg');"
+              class="h-80 w-full snap-center rounded-xl bg-cover bg-center shadow-md shadow-black/20"
+            ></div>
+            <h5 class="mt-2">Corduroy Gary</h5>
+            <p>1st July 9pm — Main Stage</p>
+          </li>
+          <li class="min-w-[80%] md:min-w-[40%]">
+            <div
+              role="img" aria-label="Corduroy Gary"
+              style="background-image: url('src/assets/images/band7.jpg');"
+              class="h-80 w-full snap-center rounded-xl bg-cover bg-center shadow-md shadow-black/20"
+            ></div>
+            <h5 class="mt-2">Corduroy Gary</h5>
+            <p>1st July 9pm — Main Stage</p>
+          </li>
+        </ul>
+
+        <button id="next" aria-label="Next" class="text-5xl flex justify-center items-center cursor-pointer p-2 relative -top-8">
+          <i class="fas fa-angle-right" aria-hidden="true"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- Lineup -->
+    <section id="lineup" class="container mx-auto mt-20 text-zinc-900 dark:text-zinc-200">
+      <h2>Lineup</h2>
+      <p>
+        Follow the timetable and stage to ensure you don't miss your favourite artists.
+      </p>
+
+      <div class="relative mt-5 bg-zinc-800 p-4 text-zinc-200 rounded-lg">
+        <div class="absolute top-7 left-1/2 w-4 ml-[-8px] h-[93%] rounded-full bg-linear-to-b from-sky-900 via-cyan-900 to-teal-900" aria-hidden="true">
+          <div class="sticky top-1/2">
+            <div class="relative size-4">
+              <div class="absolute size-4 animate-ping rounded-full bg-pink-500 opacity-75"></div>
+              <div class="absolute bg-rose-500 size-4 rounded-full"></div>
+            </div>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-8">
+          <div>
+            <h4 class="my-4 rounded-lg bg-zinc-900 p-2">1st July</h4>
+          </div>
+          <div aria-hidden="true"></div>
+          <div class="text-right">
+            <p class="font-bold">Jackie Chaston</p>
+            <p class="text-zinc-400">6pm - Sage Stage</p>
+          </div>
+          <div aria-hidden="true"></div>
+          <div aria-hidden="true"></div>
+          <div>
+            <p class="font-bold">Jackie Chaston</p>
+            <p class="text-zinc-400">6pm - Sage Stage</p>
+          </div>
+          <div aria-hidden="true"></div>
+          <div>
+            <h4 class="my-4 rounded-lg bg-zinc-900 p-2">1st July</h4>
+          </div>
+          <div class="text-right">
+            <p class="font-bold">Jackie Chaston</p>
+            <p class="text-zinc-400">6pm - Sage Stage</p>
+          </div>
+          <div aria-hidden="true"></div>
+          <div aria-hidden="true"></div>
+          <div>
+            <p class="font-bold">Jackie Chaston</p>
+            <p class="text-zinc-400">6pm - Sage Stage</p>
+          </div>
+          <div>
+            <h4 class="my-4 rounded-lg bg-zinc-900 p-2">1st July</h4>
+          </div>
+          <div aria-hidden="true"></div>
+          <div class="text-right">
+            <p class="font-bold">Jackie Chaston</p>
+            <p class="text-zinc-400">6pm - Sage Stage</p>
+          </div>
+          <div aria-hidden="true"></div>
+          <div aria-hidden="true"></div>
+          <div>
+            <p class="font-bold">Jackie Chaston</p>
+            <p class="text-zinc-400">6pm - Sage Stage</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tickets -->
+    <section id="tickets" class="container mx-auto pb-40 @container text-zinc-900 dark:text-zinc-200">
+      <h2 class="mt-20">Tickets</h2>
+      <table class="mt-5 table w-full border border-zinc-500 border-collapse">
+        <thead class="text-lg font-bold">
+          <tr>
+            <th scope="col" class="border border-zinc-500 p-3 text-left">Ticket</th>
+            <th scope="col" class="border border-zinc-500 p-3 text-left">Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="border border-zinc-500 py-2 px-3">Single day ticket</td>
+            <td class="border border-zinc-500 py-2 px-3">$30</td>
+          </tr>
+          <tr>
+            <td class="border border-zinc-500 py-2 px-3">7 days ticket</td>
+            <td class="border border-zinc-500 py-2 px-3">$100</td>
+          </tr>
+        </tbody>
+        <caption class="caption-bottom">
+          Once they're gone, they're gone!
+        </caption>
+      </table>
+    </section>
+  </main>
+</body>
+</html>
